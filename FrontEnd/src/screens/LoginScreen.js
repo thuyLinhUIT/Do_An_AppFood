@@ -7,18 +7,47 @@ import {
   TouchableOpacity,
   Button,
   Image,
-  KeyboardAvoidingView,
+  KeyboardAvoidingView,Alert
 } from "react-native";
-
+import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import CustomButton from "../components/CustomButton";
 import InputField from "../components/InputField";
 
-const LoginScreen = ({ navigation }) => {
+
+const LoginScreen = ({ navigation }) =>
+ {
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const handleLogin = () => {axios
+    .post("http://192.168.1.198:3000/api/Login", {      
+      password: password,
+      email: email,      
+    })
+    .then(function (response) {
+      // handle success
+      // alert(JSON.stringify(response.data));
+      Alert.alert(
+        "Đăng nhập thành công",
+        "Nhấn OK để chuyển hướng đến trang chủ",
+        [
+          {
+            text: "OK",
+            onPress: () => navigation.navigate("Home"),
+              //    onPress: () => setTimeout(() => {
+              //     navigation.navigate('Home');
+              // }, 2000),
+          },
+        ]
+      );
+    })
+    .catch(function (error) {
+      // handle error
+      Alert.alert("Lỗi", error.response.data.message);
+    });}
 
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
@@ -76,7 +105,7 @@ const LoginScreen = ({ navigation }) => {
             fieldButtonFunction={() => {}}
           />
         </KeyboardAvoidingView>
-        <CustomButton label={"Login"} onPress={() => {}} />
+        <CustomButton label={"Login"} onPress= {handleLogin}/>
         <Text style={{ textAlign: "center", color: "#666", marginBottom: 30 }}>
           Or, login with ...
         </Text>

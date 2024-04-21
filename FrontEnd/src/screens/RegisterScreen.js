@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import {
-   ScrollView,
+  ScrollView,
   View,
   Text,
   TextInput,
   TouchableOpacity,
-  Image,Alert
+  Image,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import InputField from "../components/InputField";
@@ -15,27 +16,38 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const RegisterScreen = ({ navigation }) => {
+//import axios from 'axios';
+import axios from "axios";
 
+// import { firebase } from "../components/FirebaseConfig";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+const RegisterScreen = ({ navigation }) => {
+  // constructor (props){
+  //   super(props);
+  //   this.state={
+  //     email:'',
+  //     password:''
+  //   }
+  // }
   const [dobLabel, setDobLabel] = useState("Date of Birth");
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const [fullname,setFullName]= useState('');
-  const [email, setEmail]=useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [fullname, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleDateChange = (event, date) => {
     if (date) {
       setSelectedDate(date);
       const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-  const hienthi=`${day} / ${month} / ${year}`;
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      const hienthi = `${day} / ${month} / ${year}`;
 
       // setDobLabel(date.toString());
-         setDobLabel(hienthi);
+      setDobLabel(hienthi);
     }
     setShowDatePicker(false);
   };
@@ -45,26 +57,60 @@ const RegisterScreen = ({ navigation }) => {
   };
   const handleRegister = () => {
     if (password !== confirmPassword) {
-      Alert.alert('Lỗi', 'Nhập lại Passwords không trùng');
+      Alert.alert("Lỗi", "Nhập lại Passwords không trùng");
       return;
     }
     if (!isEmailValid(email)) {
-      Alert.alert('Error', 'Vui lòng nhập đúng định dạng email');
+      Alert.alert("Lỗi", "Vui lòng nhập đúng định dạng email");
       return;
     }
-    // Handle registration logic here (e.g., API calls, validation, etc.)
-    // You can use 'email', 'password', and 'selectedDate' in this function.
-    // After successful registration, navigate to another screen.
-    navigation.navigate('Login'); // Replace 'Login' with your desired screen name.
+    axios
+      .post("http://192.168.1.198:3000/api/Register", {
+        username: fullname,
+        password: password,
+        email: email,
+        brithday: selectedDate,
+      })
+      .then(function (response) {
+        // handle success
+        // alert(JSON.stringify(response.data));
+        Alert.alert(
+          "Đăng ký thành công",
+          "Nhấn OK để chuyển hướng đến Đăng nhập",
+          [
+            {
+              text: "OK",
+              onPress: () => navigation.navigate("Login"),
+            },
+          ]
+        );
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error.response.data)
+        Alert.alert("Lỗi", error.response.data.message);
+      });
+    // fetch('http://192.168.1.198:3000/api/Dangky',{
+    //   method:'POST',
+    //   body:JSON.stringify({
+    //       username: fullname,
+    //       password: password,
+    //       email:email,
+    //      }),
+    //   headers:{
+    //     'Content-Type':'application/json'
+    //   }
+    // })
+
+    //navigation.navigate('Login'); // Replace 'Login' with your desired screen name.
   };
+
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
-    <ScrollView
+      <ScrollView
         showsVerticalScrollIndicator={false}
         style={{ paddingHorizontal: 25 }}
       >
-    
-      
         <View style={{ alignItems: "center" }}>
           <Image
             source={require("../../assets/images/food2.jpg")}
@@ -75,21 +121,19 @@ const RegisterScreen = ({ navigation }) => {
             }}
           />
 
-<Text
-          style={{
-            // fontFamily: "Roboto-Medium",
-            fontSize: 28,
-            fontWeight: "500",
-            color: "#333",
-            marginBottom: 30,
-            paddingTop:25,
-          }}
-        >
-          Register
-        </Text>
+          <Text
+            style={{
+              // fontFamily: "Roboto-Medium",
+              fontSize: 28,
+              fontWeight: "500",
+              color: "#333",
+              marginBottom: 30,
+              paddingTop: 25,
+            }}
+          >
+            Register
+          </Text>
         </View>
-
-
         <View
           style={{
             flexDirection: "row",
@@ -191,8 +235,8 @@ const RegisterScreen = ({ navigation }) => {
             />
           }
           inputType="password"
-          value={password}  
-     handleText={setPassword}       
+          value={password}
+          handleText={setPassword}
         />
 
         <InputField
@@ -205,7 +249,7 @@ const RegisterScreen = ({ navigation }) => {
               style={{ marginRight: 5 }}
             />
           }
-          inputType="password"       
+          inputType="password"
           value={confirmPassword}
           handleText={setConfirmPassword}
         />
@@ -232,28 +276,6 @@ const RegisterScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        {/* <DatePicker
-          modal
-          open={open}
-          date={date}
-          mode={"date"}
-          maximumDate={new Date("2005-01-01")}
-          minimumDate={new Date("1980-01-01")}
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          onConfirm={(date) => {
-            setOpen(false);
-            setDate(date);
-            setDobLabel(date.toDateString());
-          }}
-          onCancel={() => {
-            setOpen(false);
-          }}
-          onDateChange={(date) => {
-            setDate(date);
-          }}
-        /> */}
-
         {showDatePicker && (
           <DateTimePicker
             value={selectedDate}
@@ -277,9 +299,8 @@ const RegisterScreen = ({ navigation }) => {
             <Text style={{ color: "#AD40AF", fontWeight: "700" }}> Login</Text>
           </TouchableOpacity>
         </View>
-        </ScrollView>
+      </ScrollView>
     </SafeAreaView>
-   
   );
 };
 
