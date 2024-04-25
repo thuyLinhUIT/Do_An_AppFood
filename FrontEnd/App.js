@@ -8,12 +8,12 @@ import InfoTeamScreen from './src/screens/InfoTeamScreen';
 
 export default function App() {
    return (
-    <View style={styles.container}>
-<AvatarScreen/>
-{/* <ProfileScreen/> */}
-{/* <InfoTeamScreen/> */}
-    </View> 
-
+//     <View style={styles.container}>
+// <AvatarScreen/>
+// {/* <ProfileScreen/> */}
+// {/* <InfoTeamScreen/> */}
+//     </View> 
+<Linh/>
   );
 }
 

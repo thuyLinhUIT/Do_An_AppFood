@@ -30,10 +30,21 @@ export default function ProfileScreen ({ navigation }) {
       >
         <View>
           <View style={{ alignItems: "center", paddingTop: 40,paddingBottom:10 }}>
+            <View style={styles.containerAvatar}>
             <Image
               source={require("../../assets/images/food1.jpg")}
               style={{ width: 200, height: 200, borderRadius: 100 }}
             />
+            <Ionicons
+                name='camera'
+                size={35}
+                color='black'
+                boldText  
+                style={styles.editIcon}   
+                onPress={
+                  () => {navigation.navigate("Avatar");}}
+              />
+              </View>
           </View>
           <Text style={styles.nameUser} numberOfLines={1}>
             Becca William
@@ -52,7 +63,7 @@ export default function ProfileScreen ({ navigation }) {
 
             <TouchableCustom
               nameIcon={"lock-open-outline"}
-              fieldButtonLabel={"Thay đổi thông tin"}
+              fieldButtonLabel={"Thay đổi Mật khẩu"}
               color={"green"}
             />
             <View style={styles.horizontalLine} />
@@ -68,7 +79,7 @@ export default function ProfileScreen ({ navigation }) {
               fieldButtonLabel={"Thông tin liên hệ-Nhóm thực hiện"}
               color={"#B5178C"}
               onPress={
-                () => {navigation.navigate("InfoDev");console.log('linh')}}
+                () => {navigation.navigate("InfoDev");}}
             />
 
             <View style={styles.horizontalLine} />
@@ -115,5 +126,15 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     textAlign: "center",
     padding: 10,
+  },
+  editIcon: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    // Thêm các kiểu khác cho biểu tượng chỉnh sửa tại đây
+  },  containerAvatar: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

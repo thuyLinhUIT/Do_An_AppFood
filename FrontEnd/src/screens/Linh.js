@@ -7,12 +7,13 @@ import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "./HomeScreen";
 import InfoTeamScreen from "./InfoTeamScreen";
 import ProfileScreen from "./ProfileScreen";
+import AvatarScreen from "./AvatarScreen";
 const Stack = createNativeStackNavigator();
 const Linh = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Profile"
+        initialRouteName="Home"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Login" component={LoginScreen} />
@@ -20,6 +21,8 @@ const Linh = () => {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="InfoDev" component={InfoTeamScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Avatar" component={AvatarScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

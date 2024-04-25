@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import CardInfoDev from './CardInfoDev'
+import CardInfoDev from '../components/CardInfoDev'
 import { SafeAreaView } from 'react-native-safe-area-context';
 export default function InfoTeamScreen() {
 
