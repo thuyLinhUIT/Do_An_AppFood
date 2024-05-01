@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   Button,
   Image,
-  KeyboardAvoidingView,Alert
+  KeyboardAvoidingView,Alert,
 } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -29,7 +31,21 @@ const LoginScreen = ({ navigation }) =>
     })
     .then(function (response) {
       // handle success
-      // alert(JSON.stringify(response.data));
+      // console.log(response.data)
+   const setToken =async ()=>{    
+    const jsonValue = JSON.stringify(response.data);
+    await AsyncStorage.setItem('token', jsonValue)
+    // const showToken= await AsyncStorage.getItem('my-key')
+    // console.log(showToken)
+   }
+setToken().then(()=>{});
+          //  const jsonValue = JSON.stringify(response.data);
+          // AsyncStorage.setItem('my-key', jsonValue).then(()=>{
+          // AsyncStorage.getItem('my-key').then((key)=> {console.log(key)})           
+          // });
+      
+      
+      // console.log(response.data)
       Alert.alert(
         "Đăng nhập thành công",
         "Nhấn OK để chuyển hướng đến trang chủ",
@@ -43,6 +59,18 @@ const LoginScreen = ({ navigation }) =>
           },
         ]
       );
+     // console.log(response.data)
+      // const saveTokenToStorage = async (token) => {
+      //   try {
+      //     await AsyncStorage.setItem('userToken', token);
+      //     console.log('Token saved successfully!');
+      //   } catch (error) {
+      //     console.error('Error saving token:', error);
+      //   }
+      // };
+      // const token = 'your-token-here'; // Thay thế bằng token thực tế
+      // saveTokenToStorage(token);
+
     })
     .catch(function (error) {
       // handle error
@@ -75,8 +103,8 @@ const LoginScreen = ({ navigation }) =>
           <InputField
             label={"Email ID"}
             icon={
-              <MaterialIcons
-                name="alternate-email"
+              <Ionicons
+                name="at-outline"
                 size={20}
                 color="#666"
                 style={{ marginRight: 5 }}

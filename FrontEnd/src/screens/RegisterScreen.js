@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import InputField from "../components/InputField";
 import CustomButton from "../components/CustomButton";
 
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+// import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
@@ -212,8 +212,8 @@ const RegisterScreen = ({ navigation }) => {
         <InputField
           label={"Email ID"}
           icon={
-            <MaterialIcons
-              name="alternate-email"
+            <Ionicons
+              name="at-outline"
               size={20}
               color="#666"
               style={{ marginRight: 5 }}

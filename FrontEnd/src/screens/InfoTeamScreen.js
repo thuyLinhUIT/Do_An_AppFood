@@ -7,11 +7,23 @@ export default function InfoTeamScreen() {
   return (
     <SafeAreaView>
     <View>
-      <Text>InfoTeam</Text>
+    <Text
+          style={{
+            // fontFamily: "Roboto-Medium",
+            fontSize: 28,
+            fontWeight: "500",
+            color: "#333",
+            marginTop:20,
+            marginVertical: 5,
+            textAlign: "center",
+          }}
+        >
+          Thông tin nhóm thực hiện
+        </Text>
       <View style={{padding:5}}>
       {infoDetail.map((item,i)=>
          (       
-           <CardInfoDev name={item.Name} bietdanh={item.bietdanh} chucvu={item.ChucVu} congviec={item.congviec} avatar={item.avatar+''} key={i}/>        
+           <CardInfoDev name={item.Name} bietdanh={item.bietdanh} chucvu={item.ChucVu} congviec={item.congviec} avatar={item.avatar+''}  mssv={item.mssv} key={i}/>        
         )
       ) }  
       </View>         
@@ -20,6 +32,8 @@ export default function InfoTeamScreen() {
   )
 }
 // const CardInfoDev = (name,bietdanh,chucvu,congviec,avatar) 
-const infoDetail=[{Name:'Lê Ngọc Hân',ChucVu:'Thư ký',bietdanh:'Hân Ngáo Đá',avatar:'https://mega.com.vn/media/news/2306_hinh-nen-anime-nu-cho-dien-thoai1.jpg',congviec:'Thiết kế Front+BackEnd trang chi tiết, tạo + sử lý CSDL, word'},
-{Name:'Mimi',ChucVu:'Báo',bietdanh:'25',congviec:'Báo làng báo xóm báo giáo chủ ',avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU7Z4qX1K11VqwoFVWTw31HiSKNnKLPPeNt-xgQUKayQ&s'}];
+const infoDetail=[
+{Name:'Lê Ngọc Hân',ChucVu:'Thư ký',bietdanh:'Hân Ngáo Đá',avatar:'https://hinhnen4k.com/wp-content/uploads/2023/01/avatar-tho-cute-2.jpg',congviec:'Thiết kế Front+ BackEnd trang chi tiết, tạo + sử lý CSDL, word', mssv:'21522896'},
+{Name:'Dương Bảo Minh',ChucVu:'Giám đốc điều hành',bietdanh:'Hotboy',congviec:'Xây dựng thiết kế khung, Back + Front Home, xây dựng CSDL, merger code',avatar:'https://img.freepik.com/premium-vector/young-man-anime-style-character-vector-illustration-design-manga-anime-boy_147933-4763.jpg',mssv:21522901},
+{Name:'Thùy Linh',ChucVu:'Lao công',bietdanh:'Linh dễ thương',avatar:'https://www.shutterstock.com/shutterstock/photos/2235047505/display_1500/stock-vector-young-girl-anime-style-character-vector-illustration-design-manga-anime-girl-hair-faces-cartoon-2235047505.jpg',congviec:'Thiết kế Front+ BackEnd trang Login,Register,Profile, Avatar, AdjustInfoUser, InfoDev; tạo + sử lý CSDL, ppt, thuyết trình',mssv:'215229**'},];
 const styles = StyleSheet.create({})

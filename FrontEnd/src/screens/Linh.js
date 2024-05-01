@@ -8,6 +8,7 @@ import HomeScreen from "./HomeScreen";
 import InfoTeamScreen from "./InfoTeamScreen";
 import ProfileScreen from "./ProfileScreen";
 import AvatarScreen from "./AvatarScreen";
+import AdjustInfoUser from "./AdjustInfoUser";
 const Stack = createNativeStackNavigator();
 const Linh = () => {
   return (
@@ -22,6 +23,7 @@ const Linh = () => {
         <Stack.Screen name="InfoDev" component={InfoTeamScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Avatar" component={AvatarScreen} />
+        <Stack.Screen name="AdjustInfoUser" component={AdjustInfoUser} />
 
       </Stack.Navigator>
     </NavigationContainer>
