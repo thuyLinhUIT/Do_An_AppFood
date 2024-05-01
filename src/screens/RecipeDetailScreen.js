@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
+// import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
 import { StatusBar } from "expo-status-bar";
 import {
   widthPercentageToDP as wp,
