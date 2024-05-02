@@ -45,11 +45,13 @@ router.post("/Register", async (req, res) => {
     password: hashPass,
     email: req.body.email,
     brithday: req.body.brithday,
+    avatar: 'https://res.cloudinary.com/dyt6imwou/image/upload/v1714646769/mbmma9jy0q9v6ktzeng0.jpg'
     // avatar: req.body.avatar,
     // gender: req.body.gender
   });
 
   try {
+    console.log(req.data)
     const dataToSave = await data.save();
 
     res.status(200).json(dataToSave);
