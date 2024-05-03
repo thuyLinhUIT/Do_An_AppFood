@@ -1,34 +1,29 @@
 const mongoose = require('mongoose');
 const dataSchema = new mongoose.Schema({
-    username: {
+    idMeal: {
         required: true,
         type: String
     },
-    password: {
+    idUser: {
         required: true,
-        type: String,
-        // select:false
+        type: String
     },
-    email: {
-        required: true,
+    username: {
+        required: false,
         type: String
     },
     avatar: {
         required: false,
         type: String
     },
-    brithday: {
+    date: {
         required: true,
-        type: Date
-    }, gender: {
+        type: String,      
+    },  
+    content: {
         required: false,
         type: String
     },
-    phoneNumber: {
-        required: false,
-        type: String
-    },
-    favourite: [ {type: String} ]
 })
 
-module.exports = mongoose.model('user', dataSchema)
+module.exports = mongoose.model('comment', dataSchema)
