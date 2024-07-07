@@ -29,7 +29,7 @@
 - Lụm code về (clone hay down về giải nén đền được)
 - Mở Terminel  rồi  cd .\BackEnd\ để vào folder back end
 - - npm i  //để cài đặt các thư viện
-  - npm star // để chạy sever
+  - npm start // để chạy sever
 - Mở 1 terminal mới
 - - npm i //cài thư viện cho front end
   - mở src/screen/localhost tại http://192.168.1.198:3000/api bạn phải sửa lại IP theo đường truyền của bạn (sửa số không sửa chữ nha, mấy số này nè 192.168.1.198, lỡ không biết kiếm ở đâu xu)
